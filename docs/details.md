@@ -41,14 +41,30 @@ The `--wait` command means that whenever `git` opens something in VS Code for yo
 For this class, you'll @Override the `search` method to use
 an explicit stack as shown in the [IterativeDFSBlobModel class](https://coursework.cs.duke.edu/201fall23/blobs/-/blob/main/IterativeDFSBlobModel.java) with a stack of `int[]` objects just as in that code.
 
-## Percolation Classes You Will Write/Test/Analyze
+# Percolation Classes You Will Write/Test/Analyze
 
-### PercolationDFS
+
+## PercolationDFS
 
 You'll override the `search` method inherited from `PercolationDefault` to use a `Stack` rather than recursion in implementing a DFS approach. Use the ideas from the [BlobCounting code](https://coursework.cs.duke.edu/201fall23/blobs) we've seen in class, especially the [IterativeDFSBlobModel](https://coursework.cs.duke.edu/201fall23/blobs/-/blob/main/IterativeDFSBlobModel.java). The `search` method you write **will be called from the inherited `updateOnOpen` from `PercolationDFSDefault.`** 
 
 As an invariant, consider that **every cell on the stack should be `FULL`,** and you'll likely need to mark each `myGrid` cell as `FULL` before
 pushing onto the stack.
+
+See below on testing using the `InteractivePercolationVisualizer` and the JUnit testing class `TestPercolation` to test.
+
+**Important note: The `search` method will mark an open cell as `FULL` and then proceed to mark the open cells connected to that cell as full. As a result, you should terminate the method early (return ;) if the cell is `FULL` or blocked before creating the Stack.**
+
+## PercolationBFS
+
+You'll override the `search` method inherited from `PercolationDefault` to use a `Queue` and a breadth-first-search (BFS) approach. Use the ideas from the [BlobCounting code](https://coursework.cs.duke.edu/201fall23/blobs) we've seen in class, especially the [BFSBlobModel](https://coursework.cs.duke.edu/201fall23/blobs/-/blob/main/BFSBlobModel.java). The `search` method you write **will be called from the inherited `updateOnOpen` from `PercolationDFSDefault.`** 
+
+See below on testing using the `InteractivePercolationVisualizer` and the JUnit testing class `TestPercolation` to test.
+
+**Important note: The `search` method will mark an open cell as `FULL` and then proceed to mark the open cells connected to that cell as full. As a result, you should terminate the method early (return ;) if the cell is `FULL` or blocked before creating the Queue.**
+
+As an invariant, consider that **every cell on the Queue should be `FULL`,** and you'll likely need to mark each `myGrid` cell as `FULL` before
+adding to the queue.
 
 ## Testing implementations
 
@@ -57,12 +73,40 @@ For all three classes you write that extend `PercolationDefault` or implement th
 3. Use  `InteractivePercolationVisualizer`,but you will need to change the line in `main` between lines 22-25 to create a `perc` object of type `PercolationDFS`  and then run this simulator to make sure it works. Similarly for `PercolationBFS` and `PercolationUF`. 
 4. Modify and run `TestPercolation`. You will need to change the method `getPercolator` to return a `PercolationDFS` object.
 
-### PercolationBFS
 
-You'll override the `search` method inherited from `PercolationDefault` to use a `Queue` and a breadth-first-search (BFS) approach. Use the ideas from the [BlobCounting code](https://coursework.cs.duke.edu/201fall23/blobs) we've seen in class, especially the [BFSBlobModel](https://coursework.cs.duke.edu/201fall23/blobs/-/blob/main/BFSBlobModel.java). The `search` method you write **will be called from the inherited `updateOnOpen` from `PercolationDFSDefault.`** 
+## PercolationUF
 
-See above on testing using the `InteractivePercolationVisualizer` and the JUnit testing class `TestPercolation` to test.
+Each of the NxN cells is mapped to a number, and these numbers represent a cell's set for the disjoint-set/union-find algorithm. Initially every cell is a single number in its own set. You'll need two additional numbers, `VTOP` and `VBOTTOM`, for a total of N<sup>2</sup>+2 values.
 
-As an invariant, consider that **every cell on the Queue should be `FULL`,** and you'll likely need to mark each `myGrid` cell as `FULL` before
-adding to the queue.
+### Instance variables for PercolationUF
+1. A two-dimensional array of boolean values, `myGrid`, that represents whether a cell is open. Initially `myGrid[r][c]` should be `false` which is the default value when you create the grid. Each time a cell (r,c) is open, `myGrid[r][c]` will be set to true.
+2. An integer `myOpenCount` which is the number of open cells, i.e., the number of true values in `myGrid`.
+3. An `IUnionFind` object `myFinder` to store/reference the `IUnionFind` object passed to the constructor (which should be a `QuickUWPC` object in this assignment, you will see this later when you test it).
+4. Two final values for `VTOP` and `VBOTTOM`, set to `size * size` and `size * size + 1`, for example, in the constructor. All instance variables should be private as shown.
+
+<img src="p6-figures/P6-PercolationUF.png" width="400">
+
+### Constructor for `PercolationUF`
+Create a constructor `PercolationUF(IUnionFind finder, int size)` that will construct and initialize the NxN grid stored in the instance variable `myGrid` (where N is given by the `size` parameter). The constructor should initialize the `IUnionFind` object **of size NxN + 2** by calling `finder.initialize` appropriately and then storing this object in the appropriate instance variable which is `myFinder`.  Also initialize the remaining instance variables. This will be a total of five or six lines to initialize each of the five instance variables.
+
+### Methods for `PercolationUF`
+You must `@Override` each method from the `IPercolate` interface. As with methods you can see in `PercolationDFS`, these methods you write with (row,col) parameters should throw exceptions when the (row,col) are not in bounds. You may find it convenient to create your own **private or protected** helper method `inBounds` to make these checks as in `PercolationDFS`.
+
+The `IUnionFind` classes use a single integer value to represent each set used in all methods like `find, union, connected`, and so on. You'll need to convert a (row,col) pair to a single integer. The simplest way to do this is to use `row*myGrid.length + col` -- you can see that this maps (0,0) to 0, and in a 10x10 grid will map (0,9) to 9, and (1,9) to 19.  
+
+Be sure to deal with `VTOP` and `VBOTTOM` as well.
+
+1. Method `isOpen` throws an `IndexOutOfBoundsException` (see `PercolationDFS` for example) when needed and otherwise simply returns the appropriate `myGrid` value.
+2. Method `isFull` throws an `IndexOutOfBoundsException` (see `PercolationDFS` for example) when needed and otherwise checks if the (row,col) cell is connected to `VTOP` (convert (row,col) to an integer to call `myFinder.connected`).
+3. Method `percolates` checks to see if `VTOP` is connected to `VBOTTOM` using `myFinder`.
+4. Method `numberOfOpenSites` simply returns the value of the appropriate instance variable.
+5. Method `open` throws an Exception when needed, checks to be sure the cell is not already open, and then marks the cell as open and connects with open neighbors as described below.
+
+When a cell is marked as open, you'll write code to check each of the cell's four neighbors. If any of these cells is `OPEN`, the newly marked cell and the open neighbor should be connected by a call to `myFinder.union`. If the newly marked cell is in the top row it should be connected to `VTOP` by a call to `myFinder.union`. If the newly marked cell is in the bottom row it should be connected to `VBOTTOM` by a call to `myFinder.union`.
+
+### Testing `PercolationUF`
+
+See above for testing all implementations using `InteractivePercolationVisualizer` and `TestPercolation'
+
+
 
