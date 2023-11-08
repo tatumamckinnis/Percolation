@@ -1,6 +1,9 @@
-# Project 6: Percolation
+# Project 5: Percolation
 
-This is the directions document for Project P6 Percolation in CompSci 201 at Duke University, Spring 2022. Please follow the directions carefully while you complete the project. Please refer to the directions at https://coursework.cs.duke.edu/201spring22/p6-percolation rather than any forks or local copies in the event that any changes are made to the document.
+This is the directions document for Project 5 Percolation in CompSci 201 at Duke University, Fall 2023.
+
+
+**See [the details document](docs/details.md) for information** on using Git, starting the project, and more details about the project including information about the classes and concepts that are outlined briefly below. You'll absolutely need to read the information in the [details document](docs/details.md) to understand how the classes in this project work independently and together. The _details_ document also contains project-specific details. This current document provides a high-level overview of the assignment.
 
 ## Outline 
 - [Project Introduction](#project-introduction)
@@ -15,10 +18,8 @@ This is the directions document for Project P6 Percolation in CompSci 201 at Duk
 
 In this assignment, you will write a program to estimate the value of the [percolation threshold](http://en.wikipedia.org/wiki/Percolation_thresholds) via [Monte Carlo](http://en.wikipedia.org/wiki/Monte_Carlo_method) simulation. In doing so, you will better understand depth-first-search, breadth-first-search, union-find structures, and the use of computer simulations for statistical inquiry. _**Your goal will be to explore trade-offs in several approaches to estimate the percolation threshold in an NxN system.**_ 
 
-<details>
-<summary>Acknowledgements</summary>
+### Acknowledgements 
 This assignment originated at Princeton; thanks to Kevin Wayne from whom staff at Duke first learned of it, and to Jeff Forbes when he was at Duke for ensuring we kept it as part of the assignment-stack at Duke.
-</details>
 
 
 ### Vocabulary
