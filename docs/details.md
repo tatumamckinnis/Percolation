@@ -36,3 +36,33 @@ If you run into a merge conflict, one thing that might be confusing is that the 
 
 The `--wait` command means that whenever `git` opens something in VS Code for you to edit, it will wait until you close that window/tab before proceeding.
 
+**Important note: The `search` method will mark an open cell as full and then proceed to mark the open cells connected to that cell as full. As a result, you should terminate the method early (return ;) if the cell is full or blocked before creating the Queue.**
+
+For this class, you'll @Override the `search` method to use
+an explicit stack as shown in the [IterativeDFSBlobModel class](https://coursework.cs.duke.edu/201fall23/blobs/-/blob/main/IterativeDFSBlobModel.java) with a stack of `int[]` objects just as in that code.
+
+## Percolation Classes You Will Write/Test/Analyze
+
+### PercolationDFS
+
+You'll override the `search` method inherited from `PercolationDefault` to use a `Stack` rather than recursion in implementing a DFS approach. Use the ideas from the [BlobCounting code](https://coursework.cs.duke.edu/201fall23/blobs) we've seen in class, especially the [IterativeDFSBlobModel](https://coursework.cs.duke.edu/201fall23/blobs/-/blob/main/IterativeDFSBlobModel.java). The `search` method you write **will be called from the inherited `updateOnOpen` from `PercolationDFSDefault.`** 
+
+As an invariant, consider that **every cell on the stack should be `FULL`,** and you'll likely need to mark each `myGrid` cell as `FULL` before
+pushing onto the stack.
+
+## Testing implementations
+
+For all three classes you write that extend `PercolationDefault` or implement the `IPercolate` interface.
+
+3. Use  `InteractivePercolationVisualizer`,but you will need to change the line in `main` between lines 22-25 to create a `perc` object of type `PercolationDFS`  and then run this simulator to make sure it works. Similarly for `PercolationBFS` and `PercolationUF`. 
+4. Modify and run `TestPercolation`. You will need to change the method `getPercolator` to return a `PercolationDFS` object.
+
+### PercolationBFS
+
+You'll override the `search` method inherited from `PercolationDefault` to use a `Queue` and a breadth-first-search (BFS) approach. Use the ideas from the [BlobCounting code](https://coursework.cs.duke.edu/201fall23/blobs) we've seen in class, especially the [BFSBlobModel](https://coursework.cs.duke.edu/201fall23/blobs/-/blob/main/BFSBlobModel.java). The `search` method you write **will be called from the inherited `updateOnOpen` from `PercolationDFSDefault.`** 
+
+See above on testing using the `InteractivePercolationVisualizer` and the JUnit testing class `TestPercolation` to test.
+
+As an invariant, consider that **every cell on the Queue should be `FULL`,** and you'll likely need to mark each `myGrid` cell as `FULL` before
+adding to the queue.
+
