@@ -76,7 +76,7 @@ For all three classes you write that extend `PercolationDefault` or implement th
 
 ## PercolationUF
 
-Each of the NxN cells is mapped to a number, and these numbers represent a cell's set for the disjoint-set/union-find algorithm. Initially every cell is a single number in its own set. You'll need two additional numbers, `VTOP` and `VBOTTOM`, for a total of N<sup>2</sup>+2 values. For information on these two extra numbers/variables, see [From DFS to Union-Find: two approaches compared/contrasted](https://www.youtube.com/watch?v=lpYvgV5m1qM).
+Each of the NxN cells is mapped to a number, and these numbers represent a cell's set for the disjoint-set/union-find algorithm. Initially every cell is a single number in its own set. You'll need two additional numbers, `VTOP` and `VBOTTOM`, for a total of N<sup>2</sup>+2 values. For information on these two extra numbers/variables, see [From DFS to Union-Find: two approaches compared/contrasted](https://youtu.be/a_YMnW4hzmI).
 
 ### Instance variables for PercolationUF
 1. A two-dimensional array of boolean values, `myGrid`, that represents whether a cell is open. Initially `myGrid[r][c]` should be `false` which is the default value when you create the grid. Each time a cell (r,c) is open, `myGrid[r][c]` will be set to true.
