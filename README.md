@@ -87,7 +87,7 @@ See [the details document](docs/details.md) for details.
 This class extends the `PercolationDFSDefault` class just as `PercolationBFS` does. 
 
 1. You'll need to create a `PercolationBFS` constructor with an int/size parameter that calls super to initialize the state in the parent class.
-2.  You'll need to `@Override` `search` to use a `Queue` jus as you used a `Stack` for `PercolationDFS`.
+2.  You'll need to `@Override` `search` to use a `Queue` just as you used a `Stack` for `PercolationDFS`.
 
 
 ## Part 3: `PercolationUF`
@@ -128,8 +128,8 @@ Copy/paste the results for running `PercolationStats.java` for 10 trials on each
 So first copy/paste data for the grid sizes shown above for all three `IPercolate` classes you implement for this project. Then answer these questions using data from `PercolationUF` with `QuickUWPC`.
 1. How does doubling the grid size affect running time (keeping # trials fixed)? Specifically, by roughly what factor does the runtime increase each time we double the grid size?
 2. How does doubling the number of trials, e.g., to 20 (and more) affect running time? Specifically, by roughly what factor does the runtime increase each time we double the number of trials?
-3. Based on your observations of the timings with 10 trials, estimate the largest grid size you can run completely in at most 24 hours with 10 trials. Explain your reasoning.
-4. Read this brief opinion article: [Cho and Cain, _Human-centered redistricting automation in the age of AI+, Science, September 2020](https://courses.cs.duke.edu/compsci201/fall21/netid/science-abd1879.pdf) about using statistical and computational techiques similar to those used in this assignment for socio-technical problems such as congressional districting. Write a paragraph about your thoughts after reading the article about the relationship between computational techniques and societal applications.
+3. Based on your observations of the timings with 10 trials, estimate the largest grid size you can run completely within at most 24 hours with 10 trials. Explain your reasoning.
+4. Read this brief opinion article: [Cho and Cain, _Human-centered redistricting automation in the age of AI+, Science, September 2020](https://courses.cs.duke.edu/compsci201/fall21/netid/science-abd1879.pdf) about using statistical and computational techiques similar to those used in this assignment for socio-technical problems such as congressional districting. Write a paragraph about your thoughts after reading the article regarding the relationship between computational techniques and societal applications.
 
 **After completing the analysis questions you should submit your answers as a PDF to the P6-analysis project on Gradescope.**
 
