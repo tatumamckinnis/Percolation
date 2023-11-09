@@ -50,10 +50,9 @@ The percolation threshold problem is: if sites are independently set to be open 
 When N is sufficiently large, there is a threshold value `p*` such that when `p < p*` a random N-by-N grid almost never percolates, and when `p > p*`, a random N-by-N grid almost always percolates. No mathematical solution for determining the percolation threshold `p*` has yet been derived. Your task is to write a suite of computer programs to visualize the percolation process and estimate `p*` using Monte Carlo techniques. As you can see above, the percolation threshold in an NxN grid is about 0.593. The size of the grid doesn't matter as your simulations will show. 
 
 ### Helpful Videos 
-The videos linked here show (1) an interactive simulation where you choose to open sites and (2) help explain the techniques you'll read about. These videos may be helpful after reading the assignment, or to get grounded before reading. These videos help understand two parts of the assignment. These videos are from a previous version of the assignment when the class we call `PercolationDefault` was called `PercolationDFS`. The videos may be updated.
+The video linked here helps explain the techniques you'll read about. This video may be helpful after reading the assignment, or to get grounded before reading. This video may help situate the classes you write: `PercolationDFS`, `PercolationBFS`, and `PercolationUF`. You should also view [the recording from class on November 8](https://duke.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=64090dc9-2a30-455c-8bcf-b05f00e03d00) if you weren't there to see the `InteractivePercolationVisualizer` being used.
 
-1. [Open, full, DFS, and what percolation means](https://www.youtube.com/watch?v=ikVIiuCR4pk)
-2. [From DFS to Union-Find: two approaches compared/contrasted](https://www.youtube.com/watch?v=lpYvgV5m1qM)
+1. [From DFS to Union-Find: two approaches compared/contrasted](https://youtu.be/a_YMnW4hzmI)
 
 ### MazeDemo
 The program `MazeDemo.java` within the project you get (`src/MazeDemo.java`) is a model for DFS, BFS, and Union-Find.  You should study the program to reinforce your understanding of these concepts. Two videos of solving a maze using DFS and BFS, respectively, can be found linked below, looking at them and the source code for `MazeDemo.java` may help in understanding how the two searches work. 
