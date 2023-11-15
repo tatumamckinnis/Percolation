@@ -146,15 +146,15 @@ public class PercolationDefault implements IPercolate{
 		// out of bounds?
 		if (! inBounds(row,col)) return;
 		
-		// full or NOT open, don't process
+		// full or NOT open, don't process, so when reach recursive calls, know that it will be not full and will be open
 		if (isFull(row, col) || !isOpen(row, col)){
 			return;
 		}
 		myGrid[row][col] = FULL;
-		search(row - 1, col);
-		search(row, col - 1);
-		search(row, col + 1);
-		search(row + 1, col);
+		search(row - 1, col); //up
+		search(row, col - 1); //left
+		search(row, col + 1);//right
+		search(row + 1, col);//down
 	}
 
 	public int numberOfOpenSites() {

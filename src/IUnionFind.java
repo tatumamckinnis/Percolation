@@ -6,7 +6,18 @@
  * @author Jeff Forbes
  * @date March 2011
  */
+//adjacent open cells are in the same set 
+//each time we open a grid cell, we find the number it corresponds to 
+//getindex to find number associated with cell
+//top cell represents anything connected to top 
+//bottom cell represents anything connected to bottom 
+//18 is adjacent to its neighbors (up down left right)
+//union 13 and 18 bc union adjacent open sets - call connect (makes union of those two sets)
+//then 18 and 17 and 18 and 23 
+//system percolates if vtop is connected to vbottom meaning they are in the same set 
+//make 3,3 correspond to cell number 18 (thats the disjoint set it goes with): multiply r*size + c (allows us to create a set number with grid cell)
 
+//check up down left right, union if open
 public interface IUnionFind {
 
 	/**
